@@ -1,8 +1,27 @@
 console.log('js collegato');
 
 
-function getQuote() {
+async function getQuote() {
   console.log('Button clicked, Getting a quote..');
+
+  const endpoint = 'https://api.quotable.io/random';
+
+  try {
+    const response = await fetch(endpoint);
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    const jsonResponse = await response.json();
+    console.log(jsonResponse.content);
+
+  } catch (error) {
+    console.log(error);
+    alert('Failed to fetch new quote');
+
+  }
+
 }
 
 
